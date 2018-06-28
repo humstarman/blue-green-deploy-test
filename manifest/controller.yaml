@@ -1,0 +1,40 @@
+kind: Deployment 
+apiVersion: extensions/v1beta1
+metadata:
+  namespace: {{.namespace}} 
+  name: {{.name}}-controller
+spec:
+  replicas: {{.count}}
+  template:
+    metadata:
+      labels:
+        component: {{.name}}
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+        - name: {{.name}}
+          image: {{.local.registry}}/{{.name}}:{{.tag}} 
+          command:
+            - /entrypoint.sh
+          env:
+            - name: HOST_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            initialDelaySeconds: 10 
+            periodSeconds: 15 
+          volumeMounts:
+            - name: claim 
+              mountPath: "/mnt"
+      volumes:
+        - name: claim 
+          persistentVolumeClaim:
+            claimName: {{.name}}-claim 

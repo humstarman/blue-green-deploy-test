@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block title %}首页{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block section %}
+  {% if ret %}
+    <p> Count: {{ ret.n }}</p>
+    <br>
+    <p>App resides on:</p>
+    <p>- node-{{ ret.id }}</p>
+    <p>- Host IP: {{ ret.host }}</p>
+    <br>
+    <p>Pod IP:  {{ ret.pod }}</p>
+  {% else %}
+    <p>No host info found!</p>
+  {% endif %}
+{% endblock %}
+{% block header %}
+  {{ super() }}
+{% endblock %}
+{% block nav %}
+  {{ super() }}
+{% endblock %}
+{% block footer %}
+  {{ super() }}
+{% endblock %}

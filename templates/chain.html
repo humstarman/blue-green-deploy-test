@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block title %}区块链{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block section %}
+  {% if chain %}
+    <p>{{ chain }}</p>
+  {% else %}
+    <p>No block chain info found!</p>
+  {% endif %}
+{% endblock %}
+{% block header %}
+  {{ super() }}
+{% endblock %}
+{% block nav %}
+  {{ super() }}
+{% endblock %}
+{% block footer %}
+  {{ super() }}
+{% endblock %}

@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: {{.namespace}} 
+  labels:
+    proxy: {{,name}} 
+  name: {{.name}} 
+spec:
+  type: ClusterIP
+  ports:
+    - name: http 
+      port: 8080 
+      targetPort: 8080
+    - name: one 
+      port: 5000
+      targetPort: 5000
+    - name: two 
+      port: 6000
+      targetPort: 6000
+  selector:
+    component: {{.name}} 

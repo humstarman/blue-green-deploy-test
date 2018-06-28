@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block title %}结果{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block section %}
+  {% if msg %}
+    <p>{{ msg }}</p>
+  {% else %}
+    <p>没有结果返回!</p>
+  {% endif %}
+{% endblock %}
+{% block header %}
+  {{ super() }}
+{% endblock %}
+{% block nav %}
+  {{ super() }}
+{% endblock %}
+{% block footer %}
+  {{ super() }}
+{% endblock %}
